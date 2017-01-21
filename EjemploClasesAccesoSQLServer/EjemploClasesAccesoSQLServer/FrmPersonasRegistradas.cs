@@ -62,6 +62,22 @@ namespace EjemploClasesAccesoSQLServer
                     adapter.Fill(datos);
                     DatosDataGridView.DataSource = datos;
 
+                    //Para usar la Clase SqlDataReader
+                    SqlDataReader reader = comando.ExecuteReader();
+                    try
+                    {
+                        while (reader.Read())
+                        {
+                            Console.WriteLine(String.Format("" + reader[0] + ", " + reader[1] + ", " + reader[02] + ", " + reader[3] + ", " + reader[4]));
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                    reader.Close();
+                    //Los resultados se arrojan por la consola...
+
                     conexionSQL.Close();
                 }
             }
